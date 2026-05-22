@@ -23,7 +23,8 @@ def get_planning_system_prompt(language="English"):
         مخرجات المشروع تلبي المتطلبات المحددة.
 
         هدفك هو توليد سلسلة من الإجراءات لجمع الأدلة بشكل منهجي من مصادر متعددة
-        مثل الشيفرة، التوثيق، السجل التاريخي، أو البيانات.
+        مثل الشيفرة، التوثيق، السجل التاريخي، أو البيانات، لتقييم ما إذا كان المتطلب
+        مستوفى بالكامل.
 
         يمكنك اختيار الإجراءات التالية فقط، ورتبها منطقيا:
 
@@ -35,13 +36,18 @@ def get_planning_system_prompt(language="English"):
         - [History]: الرجوع إلى الأحكام أو التقييمات السابقة.
         - [Trajectory]: تحليل مسار التطوير السابق ونتائج التنفيذ.
 
-        اختر ورتب الإجراءات الضرورية فقط لتكوين تقييم شامل للمتطلب.
+        اختر ورتب الإجراءات الضرورية فقط لجمع الأدلة بشكل منهجي بما يتيح تقييما شاملا
+        لما إذا كان المتطلب مستوفى.
         """
 
     if language == "Turkish":
         return """
-        Proje çıktılarının verilen gereksinimleri karşılayıp karşılamadığını doğrulamak için adım adım bir plan üret.
-        Kanıt toplamak için aşağıdaki eylemlerden gerekli olanları mantıklı sırayla seç:
+        Verilen projenin çıktılarının belirtilen gereksinimleri karşılayıp karşılamadığını doğrulamaya yardımcı olacak
+        adım adım bir plan üretmekle görevli gelişmiş bir yapay zeka sistemisin.
+        Amacın, gereksinimin tamamen karşılanıp karşılanmadığını değerlendirmek için kod, dokümantasyon, geçmiş veya
+        veri gibi çeşitli kaynaklardan sistematik biçimde kanıt toplayan bir dizi eylem üretmektir.
+
+        Aşağıda seçebileceğin eylemler listelenmiştir. Gereksinime göre gerekli eylemleri seç ve mantıklı bir sıraya koy:
 
         - [User Query]: Gereksinimin bağlamını anlamak için kullanıcının orijinal isteğini kullan.
         - [Workspace]: Proje bileşenlerini ve bağımlılıklarını anlamak için genel çalışma alanı yapısını incele.
@@ -51,12 +57,15 @@ def get_planning_system_prompt(language="English"):
         - [History]: Önceki değerlendirmelerden, kararlardan veya yargılardan yararlan.
         - [Trajectory]: Projenin geçmiş geliştirme/adım izlerini ve bunların mevcut duruma etkisini analiz et.
 
-        Sadece gerekli adımları seç ve sırala.
+        Gereksinimin kapsamlı biçimde değerlendirilmesini sağlayacak kanıtları sistematik olarak toplamak için yalnızca
+        gerekli eylemleri seç ve sırala.
         """
 
     if language == "Chinese":
         return """
-        你的任务是生成一个分步骤计划，用于验证项目输出是否满足要求。
+        你是一个高级 AI 系统，负责生成一个分步骤计划，以帮助验证项目输出是否满足指定要求。
+        你的目标是生成一系列动作，从代码、文档、历史记录或数据等多种来源系统地收集证据，以评估该要求是否被完全满足。
+
         请从下列动作中选择必要项并按合理顺序排列：
 
         - [User Query]：使用用户原始需求来理解上下文与评估目标。
@@ -72,8 +81,12 @@ def get_planning_system_prompt(language="English"):
 
     if language == "Hindi":
         return """
-        आपका कार्य है चरण-दर-चरण योजना बनाना ताकि यह जाँचा जा सके कि प्रोजेक्ट आउटपुट आवश्यकताओं को पूरा करता है या नहीं।
-        नीचे दिए गए एक्शन्स में से आवश्यक एक्शन्स चुनकर तार्किक क्रम में रखें:
+        आप एक उन्नत AI सिस्टम हैं जिसे चरण-दर-चरण योजना बनाने का कार्य सौंपा गया है ताकि यह सत्यापित किया जा सके
+        कि प्रोजेक्ट के आउटपुट निर्दिष्ट आवश्यकताओं को पूरा करते हैं या नहीं।
+        आपका लक्ष्य ऐसे एक्शन्स की श्रृंखला तैयार करना है जो कोड, प्रलेखन, इतिहास या डेटा जैसे विभिन्न स्रोतों से
+        व्यवस्थित रूप से साक्ष्य एकत्र करे, ताकि यह आकलन किया जा सके कि आवश्यकता पूरी तरह संतुष्ट हुई है या नहीं।
+
+        नीचे दिए गए एक्शन्स में से आवश्यकता के अनुसार जरूरी एक्शन्स चुनकर उन्हें तार्किक क्रम में रखें:
 
         - [User Query]: संदर्भ और आवश्यकता को समझने के लिए उपयोगकर्ता का मूल प्रश्न उपयोग करें।
         - [Workspace]: प्रोजेक्ट के घटकों और निर्भरताओं को समझने हेतु वर्कस्पेस संरचना का विश्लेषण करें।
@@ -83,13 +96,16 @@ def get_planning_system_prompt(language="English"):
         - [History]: पिछले आकलनों, निर्णयों या संबंधित परिणामों का संदर्भ लें।
         - [Trajectory]: प्रोजेक्ट के ऐतिहासिक विकास/निर्णय-क्रम और उसके प्रभाव का विश्लेषण करें।
 
-        केवल आवश्यक चरण चुनें और क्रमबद्ध करें।
+        ऐसे केवल आवश्यक चरण चुनें और क्रमबद्ध करें जो आवश्यकता के व्यापक मूल्यांकन के लिए साक्ष्य व्यवस्थित रूप से
+        एकत्र करें।
         """
 
     if language == "Japanese":
         return """
-        あなたの役割は、プロジェクトの出力が指定された要件を満たしているかを検証するための段階的な計画を作成することです。
-        以下のアクションから必要なものだけを選び、論理的な順序で並べてください。
+        あなたは、プロジェクトの出力が指定された要件を満たしているかを検証するための段階的な計画を生成する任務を負う高度な AI システムです。
+        あなたの目標は、コード、ドキュメント、履歴、データなどのさまざまな情報源から証拠を体系的に収集し、その要件が完全に満たされているかどうかを評価するための一連のアクションを作成することです。
+
+        以下に、選択できるアクションを示します。要件に基づいて必要なアクションを選び、論理的な順序で並べてください。
 
         - [User Query]: ユーザーの元の依頼を使って文脈と要件を理解する。
         - [Workspace]: ワークスペース全体の構造を分析し、プロジェクトの構成要素と依存関係を理解する。

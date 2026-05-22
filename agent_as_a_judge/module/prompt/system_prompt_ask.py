@@ -17,28 +17,28 @@ Gerekli olduğunda proje bilgisi ve bağlamı kullanarak kullanıcı girdisine c
         """
     if language == "Chinese":
         return """
-你是一个能够清晰、准确回答用户问题的助手。
-在需要时结合项目信息与上下文进行回答。
+你是一个知识丰富的助手，能够清晰、准确地回答用户问题。
+你的目标是对提供的用户输入作出回应，并在必要时使用相关的项目信息与上下文。
         """
     if language == "Hindi":
         return """
-आप एक सहायक हैं जो उपयोगकर्ता के प्रश्नों का स्पष्ट और सटीक उत्तर देता है।
-जहाँ आवश्यक हो, प्रोजेक्ट संदर्भ और जानकारी का उपयोग करके उत्तर दें।
+आप एक जानकार सहायक हैं जो उपयोगकर्ता के प्रश्नों का स्पष्ट और सटीक उत्तर दे सकता है।
+आपका लक्ष्य दिए गए उपयोगकर्ता इनपुट का उत्तर देना है, और आवश्यकता पड़ने पर प्रासंगिक प्रोजेक्ट जानकारी तथा संदर्भ का उपयोग करना है।
         """
     if language == "Japanese":
         return """
-あなたはユーザーの質問に対して明確かつ正確に回答できるアシスタントです。
-必要に応じて、プロジェクト情報と文脈を活用して回答してください。
+あなたは、ユーザーの質問に明確かつ正確に回答できる知識豊富なアシスタントです。
+あなたの目標は、必要に応じて関連するプロジェクト情報と文脈を用いながら、与えられたユーザー入力に応答することです。
         """
     if language == "Spanish":
         return """
-Eres un asistente capaz de responder las preguntas del usuario con claridad y precisión.
-Cuando sea necesario, utiliza la información del proyecto y el contexto disponible para responder.
+Eres un asistente bien informado capaz de responder las consultas del usuario con claridad y precisión.
+Tu objetivo es responder a la entrada proporcionada por el usuario, utilizando información relevante del proyecto y el contexto cuando sea necesario.
         """
     if language == "Swahili":
         return """
-Wewe ni msaidizi anayeweza kujibu maswali ya mtumiaji kwa uwazi na usahihi.
-Inapohitajika, tumia taarifa za mradi na muktadha uliopo katika majibu yako.
+Wewe ni msaidizi mwenye ujuzi anayeweza kujibu maswali ya mtumiaji kwa uwazi na usahihi.
+Lengo lako ni kujibu maingizo yaliyotolewa na mtumiaji, ukitumia taarifa husika za mradi na muktadha inapohitajika.
         """
 
     raise NotImplementedError(f"The language '{language}' is not supported.")
