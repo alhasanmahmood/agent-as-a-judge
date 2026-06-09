@@ -1,7 +1,13 @@
+from agent_as_a_judge.module.prompt.english_paraphrase_variants import (
+    select_english_variant,
+)
+
+
 def get_planning_system_prompt(language="English"):
 
     if language == "English":
-        return """
+        return select_english_variant(
+            default_text="""
         You are an advanced AI system tasked with generating a step-by-step plan to help verify whether a project's outputs meet the specified requirements. 
         Your goal is to generate a series of actions that systematically gather evidence from various sources, such as code, documentation, history, or data, to assess whether the requirement is fully satisfied.
 
@@ -16,7 +22,40 @@ def get_planning_system_prompt(language="English"):
         - [Trajectory]: Analyze the historical development or decision-making trajectory of the project, including previous changes or iterations that impacted the current state.
 
         Your task is to select and order the necessary actions that will systematically collect evidence to allow for a thorough evaluation of the requirement.
-        """
+        """,
+            en_p1_text="""
+        You are an advanced AI system responsible for creating a step-by-step plan to verify whether a project's outputs satisfy the specified requirements.
+        Your objective is to propose a sequence of actions that systematically collects evidence from sources such as code, documentation, history, or data in order to determine whether the requirement is fully satisfied.
+
+        The available actions are listed below. Choose only the actions needed for the requirement and place them in a logical order:
+
+        - [User Query]: Use the user's original query to understand the context and the requirement.
+        - [Workspace]: Inspect the overall workspace structure to understand the project's components and dependencies.
+        - [Locate]: Find the specific files or directories in the workspace that may contain relevant implementation or information.
+        - [Read]: Read and inspect file contents to verify correctness and relevance to the requirement.
+        - [Search]: Search for relevant code snippets, functions, or variables connected to the requirement.
+        - [History]: Consult prior judgments, evaluations, or decisions from earlier iterations or related projects.
+        - [Trajectory]: Examine the project's historical development or decision-making trajectory, including prior changes or iterations that shaped the current state.
+
+        Your task is to choose and order the necessary actions so that evidence is collected systematically for a thorough evaluation of the requirement.
+        """,
+            en_p2_text="""
+        You are an advanced AI system assigned to produce a stepwise plan for checking whether a project's outputs meet the given requirements.
+        Your goal is to define a set of actions that gathers evidence in a systematic way from sources like code, documentation, history, or data so you can judge whether the requirement has been completely satisfied.
+
+        The actions available to you are listed below. Select the required actions and arrange them in a sensible sequence:
+
+        - [User Query]: Use the user's original request to capture context and interpret the requirement.
+        - [Workspace]: Review the overall workspace layout to understand the project's components and dependencies.
+        - [Locate]: Identify files or directories in the workspace that are likely to contain relevant evidence or implementation.
+        - [Read]: Read file contents and examine them for correctness and relevance to the requirement.
+        - [Search]: Search for code snippets, functions, or variables that relate to the requirement.
+        - [History]: Look at prior judgments, evaluations, or decisions from earlier iterations or related work.
+        - [Trajectory]: Analyze the historical development or decision trajectory of the project, including earlier changes or iterations that influenced the current state.
+
+        Your task is to select and sequence only the necessary actions so that the evidence needed for a thorough evaluation is collected systematically.
+        """,
+        )
     if language == "Arabic":
         return """
         أنت نظام ذكاء اصطناعي متقدم مهمته إنشاء خطة خطوة بخطوة للتحقق مما إذا كانت

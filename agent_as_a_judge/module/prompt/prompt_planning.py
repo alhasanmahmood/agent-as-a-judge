@@ -1,3 +1,8 @@
+from agent_as_a_judge.module.prompt.english_paraphrase_variants import (
+    select_english_variant,
+)
+
+
 def get_planning_prompt(criteria: str, language: str = "English") -> str:
     """
     Returns the LLM prompt to generate a step-by-step plan for evaluating or resolving the given criteria.
@@ -220,7 +225,8 @@ def get_planning_prompt(criteria: str, language: str = "English") -> str:
     Jibu:
     """
 
-    return f"""
+    return select_english_variant(
+        default_text=f"""
     You are tasked with generating a list of actions to evaluate or resolve the following requirement. 
     Select only the necessary actions and arrange them in a logical order to systematically collect evidence and verify whether the requirement is satisfied.
 
@@ -248,4 +254,63 @@ def get_planning_prompt(criteria: str, language: str = "English") -> str:
     Requirement: "{criteria}"
 
     Response:
-    """
+    """,
+        en_p1_text=f"""
+    Your task is to produce a sequence of actions for evaluating or resolving the requirement below.
+    Choose only the actions that are needed, and order them logically so evidence is gathered systematically and the requirement can be verified.
+
+    Requirement: "{criteria}"
+
+    Here are example plans:
+
+    Example 1:
+    Requirement: "The system must generate a summary report saved as `output/report.txt`."
+    Plan:
+    - [Locate]: Find the `output/report.txt` file in the workspace.
+    - [Read]: Read `report.txt` to confirm that it contains the summary report.
+    - [Search]: Search the codebase for the functions or methods that generate `report.txt`.
+
+    Example 2:
+    Requirement: "The machine learning model must be trained and saved as `results/model.pkl`."
+    Plan:
+    - [Locate]: Find `results/model.pkl` in the workspace.
+    - [Search]: Search the source files for the model-training code.
+    - [Read]: Read the model-training code to verify that it satisfies the requirement.
+    - [Trajectory]: Analyze the historical development of the model-training process to understand previous changes.
+
+    Now generate a step-by-step plan for the following requirement:
+
+    Requirement: "{criteria}"
+
+    Response:
+    """,
+        en_p2_text=f"""
+    You need to create an action plan for evaluating or resolving the requirement below.
+    Pick only the necessary actions and place them in a sensible order so the evidence can be collected systematically and the requirement can be checked.
+
+    Requirement: "{criteria}"
+
+    The following examples illustrate the expected planning style:
+
+    Example 1:
+    Requirement: "The system must generate a summary report saved as `output/report.txt`."
+    Plan:
+    - [Locate]: Identify the `output/report.txt` file in the workspace.
+    - [Read]: Read the contents of `report.txt` to verify that the summary report is present.
+    - [Search]: Search the codebase for any functions or methods responsible for producing `report.txt`.
+
+    Example 2:
+    Requirement: "The machine learning model must be trained and saved as `results/model.pkl`."
+    Plan:
+    - [Locate]: Identify `results/model.pkl` in the workspace.
+    - [Search]: Search the source files for the model-training implementation.
+    - [Read]: Read the training code to confirm that it matches the stated requirement.
+    - [Trajectory]: Review the historical development of the model-training process to understand earlier modifications.
+
+    Now generate a step-by-step plan for the following requirement:
+
+    Requirement: "{criteria}"
+
+    Response:
+    """,
+    )

@@ -1,10 +1,25 @@
+from agent_as_a_judge.module.prompt.english_paraphrase_variants import (
+    select_english_variant,
+)
+
+
 def get_ask_system_prompt(language="English"):
 
     if language == "English":
-        return """
+        return select_english_variant(
+            default_text="""
 You are a knowledgeable assistant capable of answering user queries clearly and accurately.
 Your goal is to respond to the user input provided, using relevant project information and context where necessary.
-        """
+        """,
+            en_p1_text="""
+You are an informed assistant whose role is to answer user questions clearly and correctly.
+Your objective is to respond to the provided user request, drawing on relevant project details and context whenever needed.
+        """,
+            en_p2_text="""
+You are a well-informed assistant expected to address user queries in a clear and accurate way.
+Your task is to answer the user's input by using pertinent project information and surrounding context when helpful.
+        """,
+        )
     if language == "Arabic":
         return """
 أنت مساعد معرفي قادر على الإجابة على استفسارات المستخدم بوضوح ودقة.

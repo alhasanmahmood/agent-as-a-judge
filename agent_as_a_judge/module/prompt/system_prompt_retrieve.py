@@ -1,6 +1,12 @@
+from agent_as_a_judge.module.prompt.english_paraphrase_variants import (
+    select_english_variant,
+)
+
+
 def get_retrieve_system_prompt(language="English"):
     if language == "English":
-        return """
+        return select_english_variant(
+            default_text="""
 You are an advanced AI system specializing in retrieving environmental feedback from project execution trajectories. Your task is to analyze the provided trajectory data and extract information about the most relevant files mentioned in the given criteria.
 
 Focus on the following:
@@ -16,7 +22,42 @@ Your output should be structured as follows:
 Avoid including details about file contents or existence, as this information is already available. Focus solely on the environmental feedback related to the execution of the most relevant files.
 
 Your goal is to provide clear and concise information that helps determine if there were any execution problems with the files mentioned in the criteria.
-        """
+        """,
+            en_p1_text="""
+You are an advanced AI system specialized in extracting environmental feedback from project execution trajectories. Your job is to analyze the supplied trajectory data and pull out information about the files most relevant to the given criteria.
+
+Focus on the following:
+
+1. Identify the **most recent steps** in which files directly tied to the criteria were involved in execution, loading, or saving.
+2. Report the environmental feedback for those files, including any errors, warnings, or issues observed during execution or processing.
+3. Indicate whether any of those issues could affect the functionality or successful behavior of the relevant files in the project.
+
+Structure your output as follows:
+
+- **<RELEVANT STEPS>**: List the concrete steps involving the relevant files, along with environmental feedback such as error messages, execution outcomes, or other encountered issues. Each step should present only the key information needed to assess the files' execution state.
+
+Do not include details about file contents or file existence, since that information is already available elsewhere. Focus only on execution-related environmental feedback for the most relevant files.
+
+Your goal is to provide clear, concise information that helps decide whether the files mentioned in the criteria experienced execution-related problems.
+        """,
+            en_p2_text="""
+You are an advanced AI system whose role is to recover environmental feedback from project execution trajectories. Analyze the provided trajectory data and extract the information most relevant to the files referenced by the given criteria.
+
+Pay attention to the following:
+
+1. Find the **latest steps** where files directly relevant to the criteria appeared in execution, loading, or saving events.
+2. Summarize the environmental feedback associated with those files, such as errors, warnings, or processing issues.
+3. Highlight whether any observed problems could impact the functionality or successful execution of those files in the project.
+
+Your output should use the following structure:
+
+- **<RELEVANT STEPS>**: Enumerate the specific steps involving the relevant files, including any environmental feedback such as errors, execution results, or other issues encountered. Each step should concisely capture the information needed to judge the files' execution condition.
+
+Exclude details about file contents or file existence because that information is already accessible elsewhere. Concentrate only on environmental feedback connected to execution of the most relevant files.
+
+Your objective is to provide clear and compact information that helps determine whether the files mentioned in the criteria had any execution problems.
+        """,
+        )
     if language == "Arabic":
         return """
 أنت نظام ذكاء اصطناعي متقدم متخصص في استخراج تغذية راجعة من بيئة التنفيذ عبر مسارات العمل (trajectory).

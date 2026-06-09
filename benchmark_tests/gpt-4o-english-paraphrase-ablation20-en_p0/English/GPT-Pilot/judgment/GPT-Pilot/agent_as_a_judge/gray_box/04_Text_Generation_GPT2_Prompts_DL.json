@@ -1,0 +1,165 @@
+{
+    "name": "04_Text_Generation_GPT2_Prompts_DL",
+    "query": "Please build a text generation system by automatically downloading a pre-trained GPT-2 model which you then cache in `models/saved_models/`. The system should receive prompts through loading the current contents of a text file named `data/prompt.txt` which, for demonstration purposes, should contain only the text \"who are you?\" in your implementation. You should automatically correct any typos you run into while reading `data/prompt.txt`. Ensure the generated text is limited to a maximum of 200 characters and your program should save the generated text to `results/generated_text.txt`. Implement post-processing to clean up the generated text by removing extra spaces and correcting common spelling errors. It would be ideal if the system could handle different variations of input prompts efficiently, even with minor typos. Additionally, a user-friendly output format in the saved file (perhaps with timestamps or prompt identifiers) would be nice to have.",
+    "tags": [
+        "Generative Models",
+        "Natural Language Processing"
+    ],
+    "requirements": [
+        {
+            "requirement_id": 0,
+            "prerequisites": [],
+            "criteria": "A pre-trained \"GPT-2\" model is downloaded and cached in `models/saved_models/`.",
+            "category": "Machine Learning Method",
+            "satisfied": null
+        },
+        {
+            "requirement_id": 1,
+            "prerequisites": [],
+            "criteria": "Prompts are read from a text file named `data/prompt.txt` and fed into the model.",
+            "category": "Human Computer Interaction",
+            "satisfied": null
+        },
+        {
+            "requirement_id": 2,
+            "prerequisites": [
+                0,
+                1
+            ],
+            "criteria": "Generation length is limited to a maximum of 200 characters.",
+            "category": "Other",
+            "satisfied": null
+        },
+        {
+            "requirement_id": 3,
+            "prerequisites": [
+                0,
+                1,
+                2
+            ],
+            "criteria": "Post-processing is implemented to clean up the text, including removing extra spaces and correcting common spelling errors.",
+            "category": "Data preprocessing and postprocessing",
+            "satisfied": null
+        },
+        {
+            "requirement_id": 4,
+            "prerequisites": [
+                0,
+                1,
+                2,
+                3
+            ],
+            "criteria": "The generated text is saved in `results/generated_text.txt`.",
+            "category": "Other",
+            "satisfied": null
+        }
+    ],
+    "preferences": [
+        {
+            "preference_id": 0,
+            "criteria": "The system should handle different input prompts efficiently and correct for minor typos.",
+            "satisfied": null
+        },
+        {
+            "preference_id": 1,
+            "criteria": "The system should operate efficiently, with minimal latency during text generation.",
+            "satisfied": null
+        },
+        {
+            "preference_id": 2,
+            "criteria": "A user-friendly output format in the saved file, perhaps with timestamps or prompt identifiers, should be used.",
+            "satisfied": null
+        }
+    ],
+    "is_kaggle_api_needed": false,
+    "is_training_needed": false,
+    "is_web_navigation_needed": false,
+    "hint": "There is only one prompt to read. However, requirment 1 says \"Prompts\".",
+    "judge_stats": [
+        {
+            "requirement_index": 0,
+            "criteria": "A pre-trained \"GPT-2\" model is downloaded and cached in `models/saved_models/`.",
+            "satisfied": true,
+            "llm_stats": {
+                "cost": 0.0,
+                "inference_time": 1.4382216930389404,
+                "input_tokens": 790,
+                "output_tokens": 99,
+                "accumulated_cost": 0.0,
+                "satisfied": true,
+                "reason": [
+                    "<SATISFIED>: The requirement that a pre-trained \"GPT-2\" model is downloaded and cached in `models/saved_models/` is fully met. The trajectory evidence from Step 45 confirms that the \"GPT-2\" model was successfully downloaded and cached in the specified directory without any errors or warnings. Additionally, Step 47 verifies that the model was loaded from `models/saved_models/` without issues, indicating that the model is correctly cached and accessible for use."
+                ]
+            },
+            "total_time": 6.7206642627716064
+        },
+        {
+            "requirement_index": 1,
+            "criteria": "Prompts are read from a text file named `data/prompt.txt` and fed into the model.",
+            "satisfied": true,
+            "llm_stats": {
+                "cost": 0.0,
+                "inference_time": 1.454380750656128,
+                "input_tokens": 869,
+                "output_tokens": 89,
+                "accumulated_cost": 0.0,
+                "satisfied": true,
+                "reason": [
+                    "<SATISFIED>: The requirement that prompts are read from a text file named `data/prompt.txt` and fed into the model is fulfilled. The evidence shows that the file `data/prompt.txt` was successfully loaded into the system without any errors or warnings, indicating it was accessible and readable. Additionally, the prompts from this file were fed into the model for processing without any reported issues, confirming compatibility with the model's requirements."
+                ]
+            },
+            "total_time": 3.7961630821228027
+        },
+        {
+            "requirement_index": 2,
+            "criteria": "Generation length is limited to a maximum of 200 characters.",
+            "satisfied": false,
+            "llm_stats": {
+                "cost": 0.0,
+                "inference_time": 1.6197583675384521,
+                "input_tokens": 771,
+                "output_tokens": 66,
+                "accumulated_cost": 0.0,
+                "satisfied": false,
+                "reason": [
+                    "<UNSATISFIED>: The content of the `generated_text.txt` file is `('placeholder\\r\\n', None)`, which does not provide any actual generated text to evaluate against the requirement of limiting the generation length to a maximum of 200 characters. The placeholder text does not demonstrate compliance with the specified character limit."
+                ]
+            },
+            "total_time": 4.366653680801392
+        },
+        {
+            "requirement_index": 3,
+            "criteria": "Post-processing is implemented to clean up the text, including removing extra spaces and correcting common spelling errors.",
+            "satisfied": false,
+            "llm_stats": {
+                "cost": 0.0,
+                "inference_time": 1.6847374439239502,
+                "input_tokens": 811,
+                "output_tokens": 95,
+                "accumulated_cost": 0.0,
+                "satisfied": false,
+                "reason": [
+                    "<UNSATISFIED>: The requirement specifies that post-processing should include both the removal of extra spaces and the correction of common spelling errors. While the `remove_extra_spaces()` function is confirmed to be working correctly, the spell correction component is not fully implemented due to missing entries in the dictionary file, as indicated by the warning logged during the execution of `text_cleanup.py`. This incomplete dictionary affects the ability to correct common spelling errors, thus not fully satisfying the requirement."
+                ]
+            },
+            "total_time": 4.970106363296509
+        },
+        {
+            "requirement_index": 4,
+            "criteria": "The generated text is saved in `results/generated_text.txt`.",
+            "satisfied": true,
+            "llm_stats": {
+                "cost": 0.0,
+                "inference_time": 1.3815760612487793,
+                "input_tokens": 920,
+                "output_tokens": 76,
+                "accumulated_cost": 0.0,
+                "satisfied": true,
+                "reason": [
+                    "<SATISFIED>: The requirement that the generated text is saved in `results/generated_text.txt` is met. The project structure confirms the existence of the `results` directory containing the `generated_text.txt` file. Additionally, the trajectory evidence indicates that the file was successfully saved and loaded without errors, confirming that the generated text is indeed stored in the specified location."
+                ]
+            },
+            "total_time": 4.232181787490845
+        }
+    ]
+}

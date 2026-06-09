@@ -1,3 +1,8 @@
+from agent_as_a_judge.module.prompt.english_paraphrase_variants import (
+    select_english_variant,
+)
+
+
 def get_text_retrieve_prompt(
     criteria: str, long_context: str, language: str = "English"
 ) -> str:
@@ -93,7 +98,8 @@ def get_text_retrieve_prompt(
         Toa uchambuzi mfupi wa hali ya hivi karibuni ya faili au kazi husika, na uondoe taarifa zisizohusika.
         """
 
-    return f"""
+    return select_english_variant(
+        default_text=f"""
         Below is a log of actions, steps, and file operations:
         {long_context}
 
@@ -101,4 +107,23 @@ def get_text_retrieve_prompt(
         {criteria}
 
         Focus on the last one or two mentions of relevant files or actions. Since I can check the files locally, omit file existence and content details. Provide a brief analysis of the latest status of relevant files or functions. Exclude irrelevant information.
-        """
+        """,
+        en_p1_text=f"""
+        Below is a log of actions, steps, and file operations:
+        {long_context}
+
+        Provide a concise summary of the evidence directly relevant to the following criterion:
+        {criteria}
+
+        Focus on the final one or two mentions of relevant files or actions. Because I can inspect the files locally, omit file-existence and file-content details. Give a short analysis of the latest status of the relevant files or functions, and leave out irrelevant information.
+        """,
+        en_p2_text=f"""
+        The following log contains actions, steps, and file operations:
+        {long_context}
+
+        Summarize the concise evidence that is directly tied to this criterion:
+        {criteria}
+
+        Concentrate on the last one or two mentions of the relevant files or actions. Since I can examine the files locally, skip details about file existence and file contents. Provide a brief analysis of the current status of the relevant files or functions and exclude anything irrelevant.
+        """,
+    )

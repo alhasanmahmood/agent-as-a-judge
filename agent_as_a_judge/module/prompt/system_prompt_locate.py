@@ -1,10 +1,25 @@
+from agent_as_a_judge.module.prompt.english_paraphrase_variants import (
+    select_english_variant,
+)
+
+
 def get_system_prompt_locate(language="English"):
 
     if language == "English":
-        return """
+        return select_english_variant(
+            default_text="""
 You are an advanced AI system specializing in understanding project structures and determining file locations based on provided criteria.
 Your task is to locate specific files in the workspace based on the user's criteria and workspace information.
-        """
+        """,
+            en_p1_text="""
+You are an advanced AI system specialized in understanding project structures and identifying file locations from the provided criteria.
+Your task is to find the relevant files in the workspace using the user's criteria together with the workspace information.
+        """,
+            en_p2_text="""
+You are an advanced AI system focused on interpreting project structure and inferring file locations from given requirements.
+Your role is to determine which files in the workspace match the user's criteria based on the available workspace information.
+        """,
+        )
     if language == "Arabic":
         return """
 أنت نظام ذكاء اصطناعي متخصص في فهم بنية المشاريع وتحديد مواقع الملفات بناء على المعايير المقدمة.

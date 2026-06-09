@@ -1,3 +1,8 @@
+from agent_as_a_judge.module.prompt.english_paraphrase_variants import (
+    select_english_variant,
+)
+
+
 def get_judge_prompt(criteria: str, evidence: str, language: str = "English") -> str:
 
     if language == "Arabic":
@@ -78,7 +83,8 @@ Tafadhali tathmini vigezo vifuatavyo:
 Kulingana na mwongozo, jibu kwa <SATISFIED> au <UNSATISFIED>, kisha utoe sababu fupi inayorejelea vipengele maalum vya taarifa ya mradi, kama vipande vya msimbo, sampuli za data, au matokeo ya utekelezaji.
     """
 
-    return f"""
+    return select_english_variant(
+        default_text=f"""
 Provided below is relevant information about the project:
 {evidence}
 
@@ -86,4 +92,23 @@ Kindly perform an evaluation of the following criteria:
 {criteria}
 
 As per the guidelines, respond with either <SATISFIED> or <UNSATISFIED>, followed by a concise justification that references specific elements from the project information, such as code snippets, data samples, or output results.
-    """
+    """,
+        en_p1_text=f"""
+Below is information relevant to the project:
+{evidence}
+
+Please evaluate the following criterion:
+{criteria}
+
+Following the guidelines, answer with either <SATISFIED> or <UNSATISFIED>, then provide a brief justification that cites concrete evidence from the project information, such as code snippets, data examples, or output results.
+    """,
+        en_p2_text=f"""
+The following project information is provided for assessment:
+{evidence}
+
+Please assess this criterion:
+{criteria}
+
+According to the guidelines, respond with <SATISFIED> or <UNSATISFIED> and then include a concise justification that points to specific evidence from the project information, such as code excerpts, data samples, or observed outputs.
+    """,
+    )

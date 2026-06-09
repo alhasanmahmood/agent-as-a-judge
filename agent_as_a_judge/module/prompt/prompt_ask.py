@@ -1,3 +1,8 @@
+from agent_as_a_judge.module.prompt.english_paraphrase_variants import (
+    select_english_variant,
+)
+
+
 def get_ask_prompt(question: str, evidence: str, language: str = "English") -> str:
 
     if language == "Arabic":
@@ -77,7 +82,8 @@ Swali la mtumiaji:
 Toa jibu lililo wazi na kamili, ukirejelea ushahidi husika inapofaa.
     """
 
-    return f"""
+    return select_english_variant(
+        default_text=f"""
 Provided below is relevant information about the project or context:
 {evidence}
 
@@ -85,4 +91,23 @@ Kindly respond to the following user input:
 {question}
 
 As per the guidelines, provide a comprehensive answer referencing specific elements from the provided information where applicable.
-    """
+    """,
+        en_p1_text=f"""
+Below is information relevant to the project or current context:
+{evidence}
+
+Please answer the following user question:
+{question}
+
+Following the guidelines, provide a complete response and cite specific details from the provided information whenever useful.
+    """,
+        en_p2_text=f"""
+The following project or contextual information is provided for reference:
+{evidence}
+
+Please respond to this user request:
+{question}
+
+In line with the guidelines, give a thorough answer and refer to concrete elements from the supplied information where appropriate.
+    """,
+    )

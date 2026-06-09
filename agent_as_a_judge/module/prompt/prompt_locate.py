@@ -1,3 +1,8 @@
+from agent_as_a_judge.module.prompt.english_paraphrase_variants import (
+    select_english_variant,
+)
+
+
 def get_prompt_locate(
     criteria: str, workspace_info: str, language: str = "English"
 ) -> str:
@@ -163,7 +168,8 @@ Fuata muundo wa mfano ulio hapa chini na urudishe njia za faili zinazolingana na
 {demonstration_swahili}
     """
 
-    return f"""
+    return select_english_variant(
+        default_text=f"""
 Provided below is the structure of the workspace:
 {workspace_info}
 
@@ -172,4 +178,25 @@ This is the criteria related to the task:
 
 Follow the format in the example below and return only the file paths that match the criteria:
 {demonstration}
-    """
+    """,
+        en_p1_text=f"""
+Below is the workspace structure:
+{workspace_info}
+
+This is the criterion associated with the task:
+{criteria}
+
+Follow the example format and return only the file paths that satisfy the criterion:
+{demonstration}
+    """,
+        en_p2_text=f"""
+The workspace structure is provided below:
+{workspace_info}
+
+The following criterion is relevant to the task:
+{criteria}
+
+Use the same format as the example and return only the file paths that correspond to the criterion:
+{demonstration}
+    """,
+    )

@@ -1,0 +1,189 @@
+{
+    "name": "11_House_Price_Prediction_LinearRegression_BostonHousing_ML",
+    "query": "Hi. Set up a house price prediction project using a Linear Regression model on the Boston Housing dataset. Load the dataset using `from datasets import load_dataset` and `ds = load_dataset(\"~/mrseba/boston_house_price\")` in `src/data_loader.py`. Ensure feature scaling and data standardization are performed in `src/data_loader.py`. Implement the Linear Regression model in `src/model.py`. Use cross-validation to evaluate the model in `src/train.py`. Print the Mean Squared Error (MSE), Mean Absolute Error (MAE), and $R^2$ score, and save them under `results/metrics/metrics.txt`. Visualize the comparison between predicted and actual values and save the result as `results/figures/prediction_vs_actual.png`. The visualizations should clearly demonstrate the model's accuracy (which, if done right, should be good).",
+    "tags": [
+        "Financial Analysis",
+        "Regression",
+        "Supervised Learning"
+    ],
+    "requirements": [
+        {
+            "requirement_id": 0,
+            "prerequisites": [],
+            "criteria": "The \"Boston Housing\" dataset is utilized using `from datasets import load_dataset` and `ds = load_dataset(\"mrseba/boston_house_price\")` in `src/data_loader.py`.",
+            "category": "Dataset or Environment",
+            "satisfied": null
+        },
+        {
+            "requirement_id": 1,
+            "prerequisites": [
+                0
+            ],
+            "criteria": "Feature scaling and data standardization are performed in `src/data_loader.py`.",
+            "category": "Data preprocessing and postprocessing",
+            "satisfied": null
+        },
+        {
+            "requirement_id": 2,
+            "prerequisites": [],
+            "criteria": "The \"Linear Regression\" model is implemented in `src/model.py`.",
+            "category": "Machine Learning Method",
+            "satisfied": null
+        },
+        {
+            "requirement_id": 3,
+            "prerequisites": [
+                0,
+                1,
+                2
+            ],
+            "criteria": "\"Cross-validation\" is used to evaluate the model in `src/train.py`.",
+            "category": "Performance Metrics",
+            "satisfied": null
+        },
+        {
+            "requirement_id": 4,
+            "prerequisites": [
+                0,
+                1,
+                2,
+                3
+            ],
+            "criteria": "\"Mean Squared Error (MSE),\" \"Mean Absolute Error (MAE),\" and \"R^2 score\" are printed, and saved as `results/metrics/metrics.txt`.",
+            "category": "Performance Metrics",
+            "satisfied": null
+        },
+        {
+            "requirement_id": 5,
+            "prerequisites": [
+                0,
+                1,
+                2,
+                3
+            ],
+            "criteria": "The comparison of predicted vs. actual values is visualized and saved as `results/figures/prediction_vs_actual.png`.",
+            "category": "Visualization",
+            "satisfied": null
+        }
+    ],
+    "preferences": [
+        {
+            "preference_id": 0,
+            "criteria": "The dataset should load smoothly using the provided `load_dataset` code, and other methods should be tried if issues arise.",
+            "satisfied": null
+        },
+        {
+            "preference_id": 1,
+            "criteria": "The visualizations should clearly demonstrate the model's accuracy by highlighting the differences between predicted and actual values.",
+            "satisfied": null
+        }
+    ],
+    "is_kaggle_api_needed": false,
+    "is_training_needed": true,
+    "is_web_navigation_needed": false,
+    "hint": "`ds = load_dataset(\"~/mrseba/boston_house_price\")` in the query is wrong, and it should be `ds = load_dataset(\"mrseba/boston_house_price\")`. We leave it here to check the self-debugging skill of the agents.",
+    "judge_stats": [
+        {
+            "requirement_index": 0,
+            "criteria": "The \"Boston Housing\" dataset is utilized using `from datasets import load_dataset` and `ds = load_dataset(\"mrseba/boston_house_price\")` in `src/data_loader.py`.",
+            "satisfied": true,
+            "llm_stats": {
+                "cost": 0.0,
+                "inference_time": 1.3209583759307861,
+                "input_tokens": 1371,
+                "output_tokens": 87,
+                "accumulated_cost": 0.0,
+                "satisfied": true,
+                "reason": [
+                    "<SATISFIED>: The requirement is fully met as evidenced by the content of `src/data_loader.py`, which includes the command `from datasets import load_dataset` and `ds = load_dataset(\"mrseba/boston_house_price\")`. Additionally, the trajectory evidence confirms that the dataset was successfully loaded without any errors or warnings, indicating that the function call executed as expected and the dataset was correctly imported into the environment."
+                ]
+            },
+            "total_time": 7.088754653930664
+        },
+        {
+            "requirement_index": 1,
+            "criteria": "Feature scaling and data standardization are performed in `src/data_loader.py`.",
+            "satisfied": false,
+            "llm_stats": {
+                "cost": 0.0,
+                "inference_time": 1.4168081283569336,
+                "input_tokens": 1264,
+                "output_tokens": 92,
+                "accumulated_cost": 0.0,
+                "satisfied": false,
+                "reason": [
+                    "<UNSATISFIED>: The provided content of `src/data_loader.py` does not explicitly show the implementation of feature scaling and data standardization. The file contains placeholders and minimal semantic implementations, but lacks concrete code for performing these tasks. Although trajectory evidence suggests that feature scaling and standardization were attempted, the actual code for these processes is not present in the file content provided. Therefore, the requirement is not fully met based on the available evidence."
+                ]
+            },
+            "total_time": 4.077582120895386
+        },
+        {
+            "requirement_index": 2,
+            "criteria": "The \"Linear Regression\" model is implemented in `src/model.py`.",
+            "satisfied": false,
+            "llm_stats": {
+                "cost": 0.0,
+                "inference_time": 2.0222721099853516,
+                "input_tokens": 1144,
+                "output_tokens": 111,
+                "accumulated_cost": 0.0,
+                "satisfied": false,
+                "reason": [
+                    "<UNSATISFIED>: The requirement specifies that a \"Linear Regression\" model should be implemented in `src/model.py`. However, the content of the `model.py` file provided does not contain any implementation of a Linear Regression model. Instead, it includes a placeholder function `build_model()` that returns a string \"model placeholder\" and does not define or implement any actual model logic. Additionally, the trajectory evidence indicates that there were issues with dependencies and no successful execution of a Linear Regression model was confirmed. Therefore, the requirement is not met."
+                ]
+            },
+            "total_time": 5.209411144256592
+        },
+        {
+            "requirement_index": 3,
+            "criteria": "\"Cross-validation\" is used to evaluate the model in `src/train.py`.",
+            "satisfied": false,
+            "llm_stats": {
+                "cost": 0.0,
+                "inference_time": 2.25915789604187,
+                "input_tokens": 1504,
+                "output_tokens": 116,
+                "accumulated_cost": 0.0,
+                "satisfied": false,
+                "reason": [
+                    "<UNSATISFIED>: The provided content of `src/train.py` does not contain any implementation of cross-validation. The code snippet shows a minimal training loop that simply iterates over a range and accumulates a score, but there is no evidence of cross-validation being used to evaluate the model. Additionally, the trajectory evidence mentions a cross-validation process and a warning about the number of folds, but this is not reflected in the actual code provided. Therefore, the requirement that \"Cross-validation\" is used to evaluate the model in `src/train.py` is not met."
+                ]
+            },
+            "total_time": 5.423502445220947
+        },
+        {
+            "requirement_index": 4,
+            "criteria": "\"Mean Squared Error (MSE),\" \"Mean Absolute Error (MAE),\" and \"R^2 score\" are printed, and saved as `results/metrics/metrics.txt`.",
+            "satisfied": false,
+            "llm_stats": {
+                "cost": 0.0,
+                "inference_time": 1.3507609367370605,
+                "input_tokens": 1089,
+                "output_tokens": 101,
+                "accumulated_cost": 0.0,
+                "satisfied": false,
+                "reason": [
+                    "<UNSATISFIED>: The requirement specifies that the \"Mean Squared Error (MSE),\" \"Mean Absolute Error (MAE),\" and \"R^2 score\" should be printed and saved in `results/metrics/metrics.txt`. While the trajectory evidence indicates that these metrics were computed and printed successfully, the content of `metrics.txt` only contains a placeholder and does not include the actual metrics. This discrepancy indicates that the requirement to save the metrics in the specified file was not fulfilled."
+                ]
+            },
+            "total_time": 4.867945909500122
+        },
+        {
+            "requirement_index": 5,
+            "criteria": "The comparison of predicted vs. actual values is visualized and saved as `results/figures/prediction_vs_actual.png`.",
+            "satisfied": false,
+            "llm_stats": {
+                "cost": 0.0,
+                "inference_time": 1.2778174877166748,
+                "input_tokens": 1305,
+                "output_tokens": 102,
+                "accumulated_cost": 0.0,
+                "satisfied": false,
+                "reason": [
+                    "<UNSATISFIED>: Although the trajectory evidence indicates that the plot comparing predicted vs. actual values was successfully created and saved as `results/figures/prediction_vs_actual.png`, the content of the file reveals an error message indicating that the image is unsupported and cannot be read. This suggests that the file may be corrupted or improperly formatted, preventing it from being a valid visualization of the comparison. Therefore, the requirement to visualize and save the comparison as a valid image file is not fully met."
+                ]
+            },
+            "total_time": 4.538207769393921
+        }
+    ]
+}
